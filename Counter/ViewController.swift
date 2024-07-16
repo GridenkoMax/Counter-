@@ -9,15 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var count = 0
+    private var count = 0
     
+    @IBOutlet private weak var counterLabel: UILabel!
+    @IBOutlet private weak var historyTextView: UITextView!
     
-    @IBOutlet weak var counterLabel: UILabel!
-    @IBOutlet weak var historyTextView: UITextView!
-    
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet private weak var resetButton: UIButton!
+    @IBOutlet private weak var plusButton: UIButton!
+    @IBOutlet private weak var minusButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +25,13 @@ class ViewController: UIViewController {
         historyTextView.isEditable = false
     }
     
-    
-    
-    @IBAction func plusButtonAction(_ sender: Any) {
+    @IBAction private func plusButtonAction(_ sender: Any) {
         count += 1
         counterLabel.text = "Значение счётчика:\(count)"
-        historyTextView.text += "\(Date().formatted(date: .numeric, time: .standard)): значение изменено на +1 \n"
+        historyTextView.text += "\(Date().formatted(date: .numeric, time: .standard)) : значение изменено на +1 \n"
     }
     
-    @IBAction func minusButtonAction(_ sender: Any) {
+    @IBAction private func minusButtonAction(_ sender: Any) {
         if count > 0 {
             count -= 1
             counterLabel.text = "Значение счётчика:\(count)"
@@ -43,11 +40,11 @@ class ViewController: UIViewController {
             historyTextView.text += "\(Date().formatted(date: .numeric, time: .standard)) : попытка уменьшить значение счётчика ниже 0 \n "
         }
     }
-        @IBAction func resetButtonAction(_ sender: Any) {
-            count = 0
-            counterLabel.text = "Значение счётчика:\(count)"
-            historyTextView.text += "\(Date().formatted(date: .numeric, time: .standard)) : : значение сброшено \n "
-        }
+    @IBAction private func resetButtonAction(_ sender: Any) {
+        count = 0
+        counterLabel.text = "Значение счётчика:\(count)"
+        historyTextView.text += "\(Date().formatted(date: .numeric, time: .standard)) : значение сброшено \n "
     }
-    
+}
+
 
